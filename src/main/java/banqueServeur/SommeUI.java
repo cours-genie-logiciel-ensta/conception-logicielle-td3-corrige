@@ -1,24 +1,23 @@
 package banqueServeur;
-import java.util.Observable;
-import java.util.Observer;
 
-public class SommeUI implements Observer {
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+public class SommeUI implements PropertyChangeListener {
 
 	BanqueGUI myGui;
-	
-	
-	public SommeUI( Banque b , BanqueGUI bg ){
-		myGui = bg;
-		b.addObserver( this );
-		
+	Banque laBanque;
+
+	public SommeUI(Banque b, BanqueGUI bg) {
+		this.laBanque = b;
+		this.myGui = bg;
+		b.getPropertyChangeSupport().addPropertyChangeListener(this);
 	}
-	
-	
-	public void update(Observable o, Object arg) {
-		
-		myGui.getTexteSommeBanque().setText(String.valueOf(((Banque) o).getLeCompte().getSomme()));
-		System.out.println("Somme mise a jour : " + arg + " - - - - " + o);
-		//myGui.getTexteSommeDemandee().setText(arg.toString());
-		
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		myGui.getTexteSommeBanque().setText(String.valueOf(laBanque.getLeCompte().getSomme()));
+		System.out.println("Somme mise a jour : " + laBanque.getLeCompte().getSomme());
+		// myGui.getTexteSommeDemandee().setText(arg.toString());
 	}
 }

@@ -1,5 +1,10 @@
 package banqueServeur;
 
+/**
+ * Représente un compte bancaire: ici on gère uniquement la somme présente sur
+ * le compte, comme un entier
+ *
+ */
 public class CompteBancaire {
 
 	private int somme = 0;

@@ -1,12 +1,11 @@
 package banqueServeur;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,31 +13,26 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+
 /**
- * This code was edited or generated using CloudGarden's Jigloo
- * SWT/Swing GUI Builder, which is free for non-commercial
- * use. If Jigloo is being used commercially (ie, by a corporation,
- * company or business for any purpose whatever) then you
- * should purchase a license for each developer using Jigloo.
- * Please visit www.cloudgarden.com for details.
- * Use of Jigloo implies acceptance of these licensing terms.
- * A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
- * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
- * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+ * Une interface graphique qui affiche la banque, le type de retrait, de dépôt,
+ * l'état du compte, la dernière opération et la somme en banque
+ *
  */
+@SuppressWarnings("serial")
 public class BanqueGUI extends javax.swing.JFrame {
 
 	StrategieUI strategieUI;
 	SommeUI sommeUI;
-	
+
 	private JTextField texteSommeBanque;
 	private JTextField texteSommeDemandee;
 	private JTextField texteOperationCourante;
 
-	public BanqueGUI( Banque b ) {
+	public BanqueGUI(Banque b) {
 		super();
-		strategieUI = new StrategieUI( b, this );
-		sommeUI = new SommeUI(b, this );
+		strategieUI = new StrategieUI(b, this);
+		sommeUI = new SommeUI(b, this);
 	}
 
 	public void initGui() {
@@ -69,7 +63,7 @@ public class BanqueGUI extends javax.swing.JFrame {
 
 				JLabel labelRetrait = new JLabel("Type de Retrait");
 				jPanel1.add(labelRetrait);
-				labelRetrait.setBackground(new java.awt.Color(128,255,128));
+				labelRetrait.setBackground(new java.awt.Color(128, 255, 128));
 				labelRetrait.setOpaque(true);
 
 				JLabel labelOperationCourante = new JLabel("Derniere operation");
@@ -82,8 +76,9 @@ public class BanqueGUI extends javax.swing.JFrame {
 				jPanel1.add(comboStrategieRetrait);
 				comboStrategieRetrait.setSelectedIndex(0);
 				comboStrategieRetrait.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
-						String typeRetrait = (String)((JComboBox)evt.getSource()).getSelectedItem();
+						String typeRetrait = (String) ((JComboBox) evt.getSource()).getSelectedItem();
 						strategieUI.setStrategieRetrait(typeRetrait);
 					}
 				});
@@ -95,7 +90,7 @@ public class BanqueGUI extends javax.swing.JFrame {
 
 				JLabel labelDepot = new JLabel("Type de Depot");
 				jPanel1.add(labelDepot);
-				labelDepot.setBackground(new java.awt.Color(128,255,128));
+				labelDepot.setBackground(new java.awt.Color(128, 255, 128));
 				labelDepot.setOpaque(true);
 
 				JLabel sommeBanque = new JLabel("Somme en banque");
@@ -107,8 +102,9 @@ public class BanqueGUI extends javax.swing.JFrame {
 				jPanel1.add(comboStrategieDepot);
 				strategieUI.setStrategieDepot(StrategieUI.depotSimple);
 				comboStrategieDepot.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
-						String typeDepot = (String)((JComboBox)evt.getSource()).getSelectedItem();
+						String typeDepot = (String) ((JComboBox) evt.getSource()).getSelectedItem();
 						strategieUI.setStrategieDepot(typeDepot);
 					}
 				});
@@ -123,6 +119,7 @@ public class BanqueGUI extends javax.swing.JFrame {
 				JButton boutonQuitter = new JButton("Quitter");
 				jPanel1.add(boutonQuitter);
 				boutonQuitter.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent evt) {
 						strategieUI.quitter();
 					}
@@ -135,19 +132,15 @@ public class BanqueGUI extends javax.swing.JFrame {
 		}
 	}
 
-	/* ---------------------------------------------------------------
-	 *  Accessors for fields that update
-	 * ---------------------------------------------------------------*/
-
-	public JTextField getOperationCourante() {	
+	public JTextField getOperationCourante() {
 		return texteOperationCourante;
 	}
 
-	public JTextField getTexteSommeBanque() {	
+	public JTextField getTexteSommeBanque() {
 		return texteSommeBanque;
 	}
 
-	public  JTextField getTexteSommeDemandee() {
+	public JTextField getTexteSommeDemandee() {
 		return texteSommeDemandee;
 	}
 }

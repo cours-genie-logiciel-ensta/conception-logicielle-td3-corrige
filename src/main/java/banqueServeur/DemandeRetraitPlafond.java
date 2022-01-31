@@ -1,16 +1,18 @@
 package banqueServeur;
-/**
- * 
- */
 
+/**
+ * Implantation de la stratégie de retrait plafonnée
+ *
+ */
 public class DemandeRetraitPlafond implements IDemandeRetrait {
 
 	private int montantmax;
-	
+
 	public DemandeRetraitPlafond(int plafond) {
 		montantmax = plafond;
 	}
 
+	@Override
 	public int demandeRetrait(int unRetrait, IBanque b) {
 		int valeurRetiree = 0;
 		if (b.getLeCompte().getSomme() - unRetrait > 0) {
