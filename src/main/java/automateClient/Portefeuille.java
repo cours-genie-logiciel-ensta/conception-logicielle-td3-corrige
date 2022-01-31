@@ -1,13 +1,24 @@
 package automateClient;
 
+import java.beans.PropertyChangeSupport;
+
 public class Portefeuille {
 
-	
 	int somme = 0;
-		
-	public Portefeuille( int uneSomme) {
+
+	/**
+	 * Support du mÃ©canisme Observable/Observer
+	 */
+	private PropertyChangeSupport pcSupport;
+
+	public Portefeuille(int uneSomme) {
 		super();
+		pcSupport = new PropertyChangeSupport(this);
 		this.somme = uneSomme;
+	}
+
+	public PropertyChangeSupport getPropertyChangeSupport() {
+		return pcSupport;
 	}
 
 	public int getSomme() {
@@ -19,12 +30,25 @@ public class Portefeuille {
 	}
 
 	public void setArgentPoche(int uneSomme) {
-        System.out.println("Somme déposée dans le porteFeuille "+ uneSomme );
-		this.setSomme( uneSomme );
+		System.out.println("Somme deposee dans le porte-feuille " + uneSomme);
+		this.setSomme(uneSomme);
 	}
 
-	public String toString() {
-		return " Somme du portefeuille = " + somme;
+	public void retirerSomme(int uneSomme) {
+		int derniereSomme = getSomme();
+		somme -= uneSomme;
+		pcSupport.firePropertyChange("somme", derniereSomme, getSomme());
 	}
-	    
+
+	public void ajouterSomme(int uneSomme) {
+		int derniereSomme = getSomme();
+		somme += uneSomme;
+		pcSupport.firePropertyChange("somme", derniereSomme, getSomme());
+	}
+
+	@Override
+	public String toString() {
+		return "Somme du portefeuille = " + somme;
+	}
+
 }
