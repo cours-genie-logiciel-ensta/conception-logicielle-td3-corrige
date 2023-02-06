@@ -13,7 +13,7 @@ public class ServeurTCP extends Thread {
 	private static int nbConnexions = 0;
 
 	/** Maximum de connexions client autorisées */
-	private int maxConnexions;
+	private final int maxConnexions;
 
 	private Socket clientSocket;
 
@@ -21,7 +21,7 @@ public class ServeurTCP extends Thread {
 
 	private IProtocole protocole;
 
-	private int numeroPort;
+	private final int numeroPort;
 
 	public ServeurTCP(int unNumeroPort) {
 		numeroPort = unNumeroPort;
@@ -32,14 +32,6 @@ public class ServeurTCP extends Thread {
 		this(port);
 		contexte = b;
 		protocole = p;
-	}
-
-	public void setBanqueCentrale(IContext uneBanque) {
-		contexte = uneBanque;
-	}
-
-	public IContext getBanqueCentrale() {
-		return contexte;
 	}
 
 	@Override
