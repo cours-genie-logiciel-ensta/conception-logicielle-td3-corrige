@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ConnectException;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -40,7 +41,10 @@ public class ClientTCP {
 		boolean ok = false;
 		try {
 			System.out.println("Tentative : " + nomServeur + " -- " + numeroPort);
-			socketServeur = new Socket(nomServeur, numeroPort);
+// le numero IP conrrespond au numero 
+			InetAddress adr = InetAddress.getByName("172.18.129.2");
+
+			socketServeur = new Socket(adr, numeroPort);
 			socOut = new PrintStream(socketServeur.getOutputStream());
 			socIn = new BufferedReader(new InputStreamReader(socketServeur.getInputStream()));
 			ok = true;

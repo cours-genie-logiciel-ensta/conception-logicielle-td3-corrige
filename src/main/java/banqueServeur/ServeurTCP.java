@@ -34,13 +34,6 @@ public class ServeurTCP extends Thread {
 		protocole = p;
 	}
 
-	public void setBanqueCentrale(IContext uneBanque) {
-		contexte = uneBanque;
-	}
-
-	public IContext getBanqueCentrale() {
-		return contexte;
-	}
 
 	@Override
 	public String toString() {

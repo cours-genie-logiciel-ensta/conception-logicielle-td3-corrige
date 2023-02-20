@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Banque implements IBanque {
 
-	private int port = 6666;
+	private int port = 6665;
 	private int hport = 7777;
 	/** Les serveurs pour la mise en oeuvre de connexion a distance */
 	public ArrayList<ServeurTCP> serveurs = new ArrayList<ServeurTCP>();

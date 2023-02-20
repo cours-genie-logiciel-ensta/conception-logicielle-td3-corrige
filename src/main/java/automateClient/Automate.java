@@ -13,7 +13,7 @@ package automateClient;
 
 public class Automate implements IAutomate {
 
-	private int port = 6666;
+	private int port = 6665;
 	private Portefeuille portefeuille;
 	private ClientTCP monClientTCP;
 
